@@ -1,0 +1,307 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy Policy — Spectrum Sync (iOS)</title>
+  <meta name="description" content="Privacy Policy for Spectrum Sync on iOS, including the custom keyboard and Full Access.">
+  <style>
+    :root { --bg:#f7f9f8; --card:#fff; --text:#1a2e24; --muted:#4a6358; --accent:#2d6a4f; --border:#d8e3dc; }
+    body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; line-height:1.65; color:var(--text); background:var(--bg); }
+    header { background:linear-gradient(135deg,#1b4332,#2d6a4f); color:#fff; padding:2.5rem 1.25rem 2rem; }
+    header h1 { margin:0 0 .5rem; font-size:clamp(1.75rem,4vw,2.4rem); }
+    main { max-width:860px; margin:-1.25rem auto 3rem; padding:0 1rem; }
+    article { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:1.5rem 1.25rem 2rem; box-shadow:0 8px 24px rgba(27,67,50,.08); }
+    h2 { margin-top:2rem; color:var(--accent); }
+    h3 { margin-top:1.25rem; }
+    a { color:var(--accent); }
+    table { width:100%; border-collapse:collapse; margin:1rem 0; font-size:.95rem; }
+    th, td { border:1px solid var(--border); padding:.55rem .65rem; text-align:left; vertical-align:top; }
+    th { background:#eef4f0; }
+    code { background:#eef4f0; padding:.1rem .35rem; border-radius:4px; }
+    .muted { color:var(--muted); }
+    footer { max-width:860px; margin:0 auto 2rem; padding:0 1rem; color:var(--muted); font-size:.9rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Privacy Policy</h1>
+    <p>Spectrum Sync (iOS)</p>
+    <p class="muted" style="opacity:.9">Effective July 24, 2026 · Last updated July 24, 2026</p>
+  </header>
+  <main><article>
+    <p>This page is the official privacy policy for the <strong>iOS</strong> Spectrum Sync app and keyboard. For the full text, see the markdown source in this repository (<code>privacy-policy.md</code>), or read the complete policy below.</p>
+    <p><strong>Contact:</strong> <a href="mailto:hallanhype@gmail.com">hallanhype@gmail.com</a><br>
+    <strong>Bundle ID:</strong> <code>com.spectrumsync.keyboard</code><br>
+    <strong>URL:</strong> <a href="https://orehruoy.github.io/SpectrumSyncIos/privacy-policy.html">https://orehruoy.github.io/SpectrumSyncIos/privacy-policy.html</a></p>
+    <p class="muted">The Android Spectrum Sync privacy policy is published separately and is not modified by this repository.</p>
+    <hr><pre style="white-space:pre-wrap;font-family:inherit;margin:0"># Privacy Policy for Spectrum Sync (iOS)
+
+**Effective date:** July 24, 2026  
+**Last updated:** July 24, 2026
+
+---
+
+## 1. Introduction
+
+This Privacy Policy describes how **Spectrum Sync** (&quot;**App**,&quot; &quot;**we**,&quot; &quot;**us**,&quot; or &quot;**our**&quot;) collects, uses, stores, shares, and protects information when you install or use our **iOS** application and its custom keyboard extension.
+
+Spectrum Sync is a social language coaching tool designed to help neurodivergent users communicate more confidently in text-based conversations. The App includes a settings and onboarding experience and an optional **Spectrum Sync Keyboard** that analyzes text you type with that keyboard to provide real-time coaching feedback.
+
+**Developer / Data Controller:** Brock Hall  
+**Contact email:** [hallanhype@gmail.com](mailto:hallanhype@gmail.com)  
+**iOS bundle ID:** `com.spectrumsync.keyboard`  
+**Keyboard extension:** `com.spectrumsync.keyboard.keyboard`  
+**Privacy policy URL:** https://orehruoy.github.io/SpectrumSyncIos/privacy-policy.html
+
+This policy applies to the **iOS** product only. The Android version of Spectrum Sync has a separate privacy policy.
+
+By downloading, installing, or using Spectrum Sync on iOS, you agree to this Privacy Policy. If you do not agree, do not use the App.
+
+---
+
+## 2. Summary (Plain Language)
+
+- Spectrum Sync **does not require you to create an account**.
+- Coaching works only if you **voluntarily enable** the Spectrum Sync Keyboard and grant **Allow Full Access** so the keyboard can use the network for AI analysis.
+- When coaching is active, the App may analyze **text you type using the Spectrum Sync Keyboard** (not text typed with other keyboards, and not by reading other appsâ€™ fields in the background).
+- AI analysis is performed via **Googleâ€™s cloud AI** through Firebase AI Logic (**Gemini 3.5 Flash-Lite**), using trimmed sentence-level text.
+- We **do not sell** your personal information.
+- We **do not use** third-party advertising networks.
+- We use **Google Analytics for Firebase** for anonymous usage statistics. We do **not** send message content or coaching text to analytics.
+- Most App data stays **on your device**. Subscription status is handled by **Apple App Store / StoreKit**.
+
+---
+
+## 3. Information We Collect
+
+### 3.1 Information You Provide Directly
+
+#### A. Text you type (User Content)
+
+When the Spectrum Sync Keyboard is enabled, Full Access is allowed, disclosure is accepted, and coaching is not paused, the keyboard may access text from the field you are typing in **through the keyboardâ€™s document proxy**, including:
+
+- Message drafts in messaging, email, and social apps (when Spectrum Sync Keyboard is the active keyboard)
+- The current sentence or line being composed
+
+This text is used **only** to provide coaching feedback (tone warnings, explanations, and suggested rewrites).
+
+We apply safeguards to **avoid analyzing** text when:
+
+- The field is a secure/password field (`isSecureTextEntry`)
+- Coaching is paused
+- You have not accepted the in-app disclosure
+- Local or cloud usage limits block analysis
+
+#### B. App settings and preferences
+
+Stored locally on your device (shared between the host app and keyboard via an App Group), including:
+
+- AI sensitivity / aggression filter level
+- Coaching toggles (for example bluntness filter, explain-why)
+- Theme preferences
+- Whether coaching is paused
+- Trial start timestamp
+- Premium subscription active flag (synced from App Store purchase state)
+
+#### C. Support communications
+
+If you email us at [hallanhype@gmail.com](mailto:hallanhype@gmail.com), we receive the information you choose to send.
+
+### 3.2 Information Collected Automatically
+
+#### A. Keyboard and field context
+
+The keyboard may use:
+
+- Whether the active field is secure
+- Limited document-proxy text needed for sentence detection
+- Local counters for cloud AI limits
+
+#### B. Subscription and billing information
+
+Purchases, free trials, and subscription status are processed by **Apple App Store / StoreKit**. Apple may provide us with:
+
+- Whether you have an active subscription or trial entitlement
+- Product identifiers (for example `premium_access_monthly`, `premium_access_yearly`)
+- Transaction metadata needed to verify premium access
+
+We do **not** receive your full payment card number.
+
+#### C. App usage analytics (Firebase Analytics)
+
+We collect limited, anonymous usage information such as:
+
+- App opens and session counts
+- Screen or tab views within the app
+- Device model, OS version, and app version
+- Whether coaching cloud features were used at least once (`service_enabled`)
+- When a trial user reaches the daily coaching limit (`daily_limit_reached`, with trial day 1â€“7)
+
+**Analytics does not include** the text you type, coaching suggestions, or message content.
+
+### 3.3 Information We Do Not Collect
+
+We do **not** intentionally collect:
+
+- Passwords from secure text fields (coaching is skipped)
+- Full browsing history
+- Contacts, photos, microphone audio, or camera data
+- A persistent account profile on our servers
+- Advertising identifiers for ad targeting
+
+---
+
+## 4. How We Use Information
+
+| Purpose | Examples |
+|--------|----------|
+| **Provide coaching** | Analyze typed text and show tone feedback, warnings, and rewrite suggestions on the keyboard |
+| **Safety** | Skip secure fields; honor pause and disclosure settings |
+| **Operate the App** | Save settings and pause state locally (App Group) |
+| **Manage subscriptions** | Verify premium access and free-trial eligibility via the App Store |
+| **Limit cloud AI usage** | Enforce daily/hourly caps and cooldowns |
+| **Respond to you** | Answer support emails |
+| **Legal compliance** | Meet legal obligations |
+
+We do **not** use your typed message content for advertising or sell it to data brokers.
+
+---
+
+## 5. Custom Keyboard and Full Access Disclosure
+
+Spectrum Sync uses a custom **iOS Keyboard Extension**.
+
+### What the keyboard can access
+
+When enabled and Full Access is allowed, it may:
+
+- See text in the active input field via the system document proxy (only while Spectrum Sync Keyboard is selected)
+- Use the network to send trimmed sentence text to Google for AI coaching
+- Show a coaching pill / panel above the keyboard
+- Insert suggested replacement text when you choose a suggestion
+
+### Why Full Access is required
+
+iOS sandboxes keyboard extensions by default. **Allow Full Access** is required for network access so the keyboard can call Firebase AI Logic (Gemini) and related Firebase services. Without Full Access, cloud coaching cannot run.
+
+### What we do not do
+
+We do **not**:
+
+- Read text typed with other keyboards
+- Use Accessibility APIs to monitor other apps in the background
+- Sell keystroke data
+- Use coaching text for advertising
+
+### Your control
+
+You can stop processing at any time by:
+
+1. Switching back to another keyboard
+2. Turning off **Allow Full Access** for Spectrum Sync Keyboard in iOS Settings
+3. Using **Pause coaching** inside Spectrum Sync
+4. Uninstalling the App
+
+---
+
+## 6. AI Processing
+
+Spectrum Sync uses artificial intelligence to analyze text and generate coaching feedback.
+
+On iOS, analysis uses **Googleâ€™s generative AI services** through **Firebase AI Logic**, using **Gemini 3.5 Flash-Lite**. The App may send **only the current sentence or line being analyzed** (trimmed to an internal length limit).
+
+Cloud requests are subject to app-side limits, including approximately:
+
+- **25 cloud coaching requests per day** during the free trial
+- **150 cloud coaching requests per day** for active premium subscribers
+- Additional hourly, interval, and cooldown limits
+
+AI responses are structured coaching results (status, short warning, reasoning, and suggestions). Choosing a suggestion may replace text in the active field via the keyboard.
+
+We do not routinely have humans read your typed content. Support emails you send us are handled separately.
+
+---
+
+## 7. How We Share Information
+
+| Provider | Purpose | Data involved |
+|---------|---------|---------------|
+| **Google Firebase / Firebase AI Logic** | Cloud AI inference | Trimmed coaching text, prompts/instructions, technical request metadata |
+| **Apple App Store / StoreKit** | Subscriptions, trials, purchase verification | Product IDs, subscription/transaction status |
+| **Google Analytics for Firebase** | Anonymous usage analytics | App/session metrics; no message content |
+
+We may disclose information if required by law or to protect rights and safety. We do **not** sell personal information for cross-context behavioral advertising.
+
+---
+
+## 8. Data Retention
+
+| Data type | Retention |
+|----------|-----------|
+| Local settings (App Group JSON) | Until you change settings, clear app data, or uninstall |
+| Coaching text in memory | Only while processing the current request |
+| Cloud usage counters | Stored locally; reset per daily/hourly logic |
+| App Store purchase records | Retained by Apple under Appleâ€™s policies; we retain local entitlement flags as needed |
+| Support emails | As long as needed to respond |
+
+---
+
+## 9. Data Security
+
+We use reasonable measures designed to protect information, including:
+
+- Skipping secure text fields
+- Limiting cloud transmission to trimmed sentence-level text
+- Using encrypted transport (HTTPS/TLS) for cloud AI requests
+- Storing settings in the Appâ€™s App Group container
+
+No method of transmission or storage is 100% secure.
+
+---
+
+## 10. Your Choices and Rights
+
+### Controls in the App
+
+- Enable or disable the Spectrum Sync Keyboard and Full Access
+- Pause coaching
+- Adjust sensitivity and coaching options
+- Manage or cancel subscriptions in iOS Settings â†’ Apple ID â†’ Subscriptions
+
+### Access, deletion, correction
+
+Because most data is stored locally:
+
+- Change settings in the App
+- Delete the App to remove local App data
+- Email [hallanhype@gmail.com](mailto:hallanhype@gmail.com?subject=Spectrum%20Sync%20iOS%20Data%20Deletion%20Request) for help with information you sent by email
+
+### Children
+
+Spectrum Sync is not directed to children under 13. We do not knowingly collect personal information from children under 13.
+
+---
+
+## 11. International Users
+
+If you use the App outside the United States, your information may be processed in the United States and other countries where Google and Apple operate.
+
+---
+
+## 12. Changes to This Policy
+
+We may update this Privacy Policy from time to time. The â€œLast updatedâ€ date at the top will change when we do. Continued use of the App after an update means you accept the revised policy.
+
+---
+
+## 13. Contact
+
+**Brock Hall**  
+Email: [hallanhype@gmail.com](mailto:hallanhype@gmail.com)
+
+Privacy policy URL: https://orehruoy.github.io/SpectrumSyncIos/privacy-policy.html
+</pre>
+  </article></main>
+  <footer>© Brock Hall · Spectrum Sync iOS</footer>
+</body></html>
