@@ -1,7 +1,7 @@
 # Privacy Policy for Spectrum Sync (iOS)
 
 **Effective date:** July 24, 2026  
-**Last updated:** July 24, 2026
+**Last updated:** August 24, 2026
 
 ---
 
@@ -28,7 +28,7 @@ By downloading, installing, or using Spectrum Sync on iOS, you agree to this Pri
 - Spectrum Sync **does not require you to create an account**.
 - Coaching works only if you **voluntarily enable** the Spectrum Sync Keyboard and grant **Allow Full Access** so the keyboard can use the network for AI analysis.
 - When coaching is active, the App may analyze **text you type using the Spectrum Sync Keyboard** (not text typed with other keyboards, and not by reading other apps’ fields in the background).
-- AI analysis is performed via **Google’s cloud AI** through Firebase AI Logic (**Gemini 3.5 Flash-Lite**), using trimmed sentence-level text.
+- AI analysis prefers **Apple Intelligence** on-device when available. Otherwise it uses **Google’s cloud AI** through Firebase AI Logic (**Gemini 3.5 Flash-Lite**), using the current sentence plus a small amount of recent in-memory context.
 - We **do not sell** your personal information.
 - We **do not use** third-party advertising networks.
 - We use **Google Analytics for Firebase** for anonymous usage statistics. We do **not** send message content or coaching text to analytics.
@@ -46,6 +46,7 @@ When the Spectrum Sync Keyboard is enabled, Full Access is allowed, disclosure i
 
 - Message drafts in messaging, email, and social apps (when Spectrum Sync Keyboard is the active keyboard)
 - The current sentence or line being composed
+- Up to about the last 4–5 completed sentences, held only in short-term keyboard memory so a follow-up can be coached with conversation context (for example pronouns like “that” or “he”). This buffer is not written to disk and is cleared when you change fields, hide the keyboard, enter a password field, or coaching resets.
 
 This text is used **only** to provide coaching feedback (tone warnings, explanations, and suggested rewrites).
 
@@ -79,6 +80,7 @@ The keyboard may use:
 
 - Whether the active field is secure
 - Limited document-proxy text needed for sentence detection
+- A short-term in-memory list of recent completed sentences (not saved to disk)
 - Local counters for cloud AI limits
 
 #### B. Subscription and billing information
@@ -140,13 +142,13 @@ Spectrum Sync uses a custom **iOS Keyboard Extension**.
 When enabled and Full Access is allowed, it may:
 
 - See text in the active input field via the system document proxy (only while Spectrum Sync Keyboard is selected)
-- Use the network to send trimmed sentence text to Google for AI coaching
+- Use the network to send the current sentence and limited recent-sentence context to Google for AI coaching
 - Show a coaching pill / panel above the keyboard
 - Insert suggested replacement text when you choose a suggestion
 
 ### Why Full Access is required
 
-iOS sandboxes keyboard extensions by default. **Allow Full Access** is required for network access so the keyboard can call Firebase AI Logic (Gemini) and related Firebase services. Without Full Access, cloud coaching cannot run.
+iOS sandboxes keyboard extensions by default. **Allow Full Access** is required for network access so the keyboard can call Firebase AI Logic (Gemini) and related Firebase services when **Apple Intelligence** is unavailable or does not produce a usable result. Without Full Access, cloud coaching cannot run (on-device Apple Intelligence may still work on supported devices when enabled).
 
 ### What we do not do
 
@@ -172,7 +174,7 @@ You can stop processing at any time by:
 
 Spectrum Sync uses artificial intelligence to analyze text and generate coaching feedback.
 
-On iOS, analysis uses **Google’s generative AI services** through **Firebase AI Logic**, using **Gemini 3.5 Flash-Lite**. The App may send **only the current sentence or line being analyzed** (trimmed to an internal length limit).
+On iOS, analysis prefers **Apple Intelligence** (Apple’s on-device foundation model via the Foundation Models framework / `SystemLanguageModel`) when the device supports it and Apple Intelligence is enabled. Otherwise — or if on-device analysis is unavailable — the App uses **Google’s generative AI services** through **Firebase AI Logic**, using **Gemini 3.5 Flash-Lite**. Cloud requests send the **current sentence or line being analyzed** (trimmed to an internal length limit) and may also include **up to about the last 4–5 recently completed sentences** as conversation context. That extra context is held only in keyboard RAM, is not stored long-term on the device, and is not sent as a chat history or account transcript. The model is instructed to coach only the current sentence.
 
 Cloud requests are subject to app-side limits, including approximately:
 
@@ -204,6 +206,7 @@ We may disclose information if required by law or to protect rights and safety. 
 |----------|-----------|
 | Local settings (App Group JSON) | Until you change settings, clear app data, or uninstall |
 | Coaching text in memory | Only while processing the current request |
+| Recent-sentence coaching context | In keyboard RAM only (about the last 4–5 completed sentences). Cleared when the keyboard hides, the text field changes, a secure field is focused, or coaching resets. Not written to disk. |
 | Cloud usage counters | Stored locally; reset per daily/hourly logic |
 | App Store purchase records | Retained by Apple under Apple’s policies; we retain local entitlement flags as needed |
 | Support emails | As long as needed to respond |
@@ -215,7 +218,7 @@ We may disclose information if required by law or to protect rights and safety. 
 We use reasonable measures designed to protect information, including:
 
 - Skipping secure text fields
-- Limiting cloud transmission to trimmed sentence-level text
+- Limiting cloud transmission to the current sentence plus a small, short-lived context window
 - Using encrypted transport (HTTPS/TLS) for cloud AI requests
 - Storing settings in the App’s App Group container
 
