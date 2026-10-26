@@ -1,7 +1,9 @@
 # Privacy Policy for Spectrum Sync (iOS)
 
+Your privacy comes first. Here's how Spectrum Sync protects it.
+
 **Effective date:** July 24, 2026  
-**Last updated:** August 24, 2026
+**Last updated:** October 26, 2026
 
 ---
 
@@ -17,7 +19,7 @@ Spectrum Sync is a social language coaching tool designed to help neurodivergent
 **Keyboard extension:** `com.spectrumsync.keyboard.keyboard`  
 **Privacy policy URL:** https://orehruoy.github.io/SpectrumSyncIos/privacy-policy.html
 
-This policy applies to the **iOS** product only. The Android version of Spectrum Sync has a separate privacy policy.
+This policy applies to the **iOS** app and keyboard only.
 
 By downloading, installing, or using Spectrum Sync on iOS, you agree to this Privacy Policy. If you do not agree, do not use the App.
 
@@ -26,13 +28,13 @@ By downloading, installing, or using Spectrum Sync on iOS, you agree to this Pri
 ## 2. Summary (Plain Language)
 
 - Spectrum Sync **does not require you to create an account**.
-- Coaching works only if you **voluntarily enable** the Spectrum Sync Keyboard and grant **Allow Full Access** so the keyboard can use the network for AI analysis.
+- Coaching works only if you **voluntarily enable** the Spectrum Sync Keyboard and grant **Allow Full Access** so the keyboard can use the network for cloud AI when needed.
 - When coaching is active, the App may analyze **text you type using the Spectrum Sync Keyboard** (not text typed with other keyboards, and not by reading other apps’ fields in the background).
-- AI analysis prefers **Apple Intelligence** on-device when available. Otherwise it uses **Google’s cloud AI** through Firebase AI Logic (**Gemini 3.5 Flash-Lite**), using the current sentence plus a small amount of recent in-memory context.
+- AI analysis prefers **Apple Intelligence** on-device when available (iOS 26). Otherwise it uses **Google’s Gemini** through **Firebase AI Logic** (model `gemini-3.5-flash-lite`), sending the current sentence plus up to five earlier sentences held only in short-term keyboard memory. **Some coaching text leaves your device for that cloud step**; we do not operate our own coaching transcript database.
 - We **do not sell** your personal information.
 - We **do not use** third-party advertising networks.
-- We use **Google Analytics for Firebase** for anonymous usage statistics. We do **not** send message content or coaching text to analytics.
-- Most App data stays **on your device**. Subscription status is handled by **Apple App Store / StoreKit**.
+- **Firebase Analytics** (in the keyboard extension) receives only limited, anonymous engagement signals we choose to log—not your message text. **Usage counters** (keyboard opens, coach pills shown, and similar integers) stay on your device unless you include them in optional feedback.
+- Most settings and preferences stay **on your device**. Subscription status is handled by **Apple App Store / StoreKit**.
 
 ---
 
@@ -46,13 +48,21 @@ When the Spectrum Sync Keyboard is enabled, Full Access is allowed, disclosure i
 
 - Message drafts in messaging, email, and social apps (when Spectrum Sync Keyboard is the active keyboard)
 - The current sentence or line being composed
-- Up to about the last 4–5 completed sentences, held only in short-term keyboard memory so a follow-up can be coached with conversation context (for example pronouns like “that” or “he”). This buffer is not written to disk and is cleared when you change fields, hide the keyboard, enter a password field, or coaching resets.
+- Up to **5** completed prior sentences in that same field, each trimmed to **180** characters (up to **720** characters of prior context total), held only in short-term keyboard memory so a follow-up can be coached with conversation context (for example pronouns like “that” or “he”). This buffer is **not written to disk** and is cleared when you change fields, hide the keyboard, focus a private field, or coaching resets.
 
 This text is used **only** to provide coaching feedback (tone warnings, explanations, and suggested rewrites).
 
+**When it is sent for analysis:** about **2 seconds** after you stop typing (or about **3.5 seconds** after a delete), and when a sentence ends with `.`, `!`, `?`, or return—subject to minimum length/word checks and usage limits.
+
+**What goes to the cloud:** If on-device Apple Intelligence is unavailable or does not produce a usable result, the keyboard sends the trimmed current sentence (up to **280** characters), optional prior-sentence context as above, coaching instructions (including your sensitivity and coaching toggles), and technical request metadata to **Google** via **Firebase AI Logic** (Gemini). **We do not store your coaching sentences on our servers** or keep a long-term transcript on the device. Google processes requests under [Google’s terms and privacy policies](https://policies.google.com/privacy) for the Firebase / Gemini services.
+
+**On-device path:** When Apple Intelligence is available and returns a usable result, that analysis stays on the device for that check.
+
 We apply safeguards to **avoid analyzing** text when:
 
-- The field is a secure/password field (`isSecureTextEntry`)
+- The field is secure (`isSecureTextEntry`)
+- The field’s content type is a one-time code, password, new password, credit card, telephone number, email address, username, URL, or an address (street, city, state, postal code, country, or location)
+- The keyboard type is a number pad, ASCII number pad, phone pad, email, URL, web search, or decimal pad
 - Coaching is paused
 - You have not accepted the in-app disclosure
 - Local or cloud usage limits block analysis
@@ -68,7 +78,18 @@ Stored locally on your device (shared between the host app and keyboard via an A
 - Trial start timestamp
 - Premium subscription active flag (synced from App Store purchase state)
 
-#### C. Support communications
+#### C. In-app feedback form (optional)
+
+From **Settings → Feedback**, you may send a message to the developer through **Web3Forms** ([web3forms.com](https://web3forms.com)). The form sends:
+
+- The **message** you type (required)
+- An **email address**, only if you choose to enter one (optional—we use it only to reply)
+- **Platform** (iOS), **app version**, and **device model/OS** string
+- **Usage counts** from on-device diagnostics (integers and timestamps such as keyboard opens and coach pills shown—**not** message text)
+
+We use feedback **only** to respond and improve the App. You do not have to use the form.
+
+#### D. Support communications
 
 If you email us at [hallanhype@gmail.com](mailto:hallanhype@gmail.com), we receive the information you choose to send.
 
@@ -78,7 +99,7 @@ If you email us at [hallanhype@gmail.com](mailto:hallanhype@gmail.com), we recei
 
 The keyboard may use:
 
-- Whether the active field is secure
+- Whether the active field is secure or treated as private (see list above)
 - Limited document-proxy text needed for sentence detection
 - A short-term in-memory list of recent completed sentences (not saved to disk)
 - Local counters for cloud AI limits
@@ -88,22 +109,25 @@ The keyboard may use:
 Purchases, free trials, and subscription status are processed by **Apple App Store / StoreKit**. Apple may provide us with:
 
 - Whether you have an active subscription or trial entitlement
-- Product identifiers (for example `premium_access_monthly`, `premium_access_yearly`)
+- Product identifiers (for example `premium_access_monthly`, `premium_access_yearly`, `free_forever`)
 - Transaction metadata needed to verify premium access
 
-We do **not** receive your full payment card number.
+We do **not** receive your full payment card number. Payment details are handled by Apple.
 
-#### C. App usage analytics (Firebase Analytics)
+#### C. Firebase Analytics (keyboard extension)
 
-We collect limited, anonymous usage information such as:
+When the keyboard extension runs with network access, **Google Analytics for Firebase** may receive:
 
-- App opens and session counts
-- Screen or tab views within the app
-- Device model, OS version, and app version
-- Whether coaching cloud features were used at least once (`service_enabled`)
-- When a trial user reaches the daily coaching limit (`daily_limit_reached`, with trial day 1–7)
+- **Automatic metrics** the Firebase SDK may collect (for example app instance identifiers and standard technical/device fields per Google’s SDK behavior)
+- **Custom events we log intentionally** (no message or coaching text):
+  - `service_enabled` — once per install, the first time cloud coaching is used
+  - `daily_limit_reached` — at most once per calendar day when a trial user hits the daily cloud cap, with `trial_day` (1–7)
 
-**Analytics does not include** the text you type, coaching suggestions, or message content.
+These events are **not linked to your name, email, or typed messages** in our systems.
+
+#### D. On-device usage counters (not analytics uploads)
+
+The keyboard maintains **funnel statistics** locally in the App Group: counts and first/last timestamps (for example keyboard opens, coach pills shown, rewrites accepted, errors, daily-limit hits). **They do not include message text** and are **not** sent to Firebase Analytics. They appear in a hidden diagnostics panel in the host app and are included **only if you submit the feedback form**.
 
 ### 3.3 Information We Do Not Collect
 
@@ -122,11 +146,11 @@ We do **not** intentionally collect:
 | Purpose | Examples |
 |--------|----------|
 | **Provide coaching** | Analyze typed text and show tone feedback, warnings, and rewrite suggestions on the keyboard |
-| **Safety** | Skip secure fields; honor pause and disclosure settings |
+| **Safety** | Skip secure and private fields; honor pause and disclosure settings |
 | **Operate the App** | Save settings and pause state locally (App Group) |
 | **Manage subscriptions** | Verify premium access and free-trial eligibility via the App Store |
 | **Limit cloud AI usage** | Enforce daily/hourly caps and cooldowns |
-| **Respond to you** | Answer support emails |
+| **Respond to you** | Answer feedback and support emails |
 | **Legal compliance** | Meet legal obligations |
 
 We do **not** use your typed message content for advertising or sell it to data brokers.
@@ -142,7 +166,7 @@ Spectrum Sync uses a custom **iOS Keyboard Extension**.
 When enabled and Full Access is allowed, it may:
 
 - See text in the active input field via the system document proxy (only while Spectrum Sync Keyboard is selected)
-- Use the network to send the current sentence and limited recent-sentence context to Google for AI coaching
+- Use the network to send coaching text and instructions to Google (Gemini via Firebase AI Logic) when on-device Apple Intelligence is not used
 - Show a coaching pill / panel above the keyboard
 - Insert suggested replacement text when you choose a suggestion
 
@@ -174,17 +198,21 @@ You can stop processing at any time by:
 
 Spectrum Sync uses artificial intelligence to analyze text and generate coaching feedback.
 
-On iOS, analysis prefers **Apple Intelligence** (Apple’s on-device foundation model via the Foundation Models framework / `SystemLanguageModel`) when the device supports it and Apple Intelligence is enabled. Otherwise — or if on-device analysis is unavailable — the App uses **Google’s generative AI services** through **Firebase AI Logic**, using **Gemini 3.5 Flash-Lite**. Cloud requests send the **current sentence or line being analyzed** (trimmed to an internal length limit) and may also include **up to about the last 4–5 recently completed sentences** as conversation context. That extra context is held only in keyboard RAM, is not stored long-term on the device, and is not sent as a chat history or account transcript. The model is instructed to coach only the current sentence.
+On iOS, analysis prefers **Apple Intelligence** (Apple’s on-device foundation model via the Foundation Models framework) when the device supports it and Apple Intelligence is enabled (iOS 26). Otherwise — or if on-device analysis is unavailable — the App uses **Google’s generative AI** through **Firebase AI Logic**, model id **`gemini-3.5-flash-lite`**.
+
+Cloud requests send the **current sentence** (up to **280** characters) and may include **up to 5** recently completed prior sentences as context (limits above). That context lives only in keyboard RAM, is not stored long-term on the device, and is not sent as a chat history or account transcript. The model is instructed to coach only the current sentence.
 
 Cloud requests are subject to app-side limits, including approximately:
 
-- **25 cloud coaching requests per day** during the free trial
-- **150 cloud coaching requests per day** for active premium subscribers
-- Additional hourly, interval, and cooldown limits
+- **25** cloud coaching requests per day during the free trial
+- **150** cloud coaching requests per day for active premium subscribers
+- **40** cloud requests per hour and additional spacing/cooldown limits after errors or rate limits
 
 AI responses are structured coaching results (status, short warning, reasoning, and suggestions). Choosing a suggestion may replace text in the active field via the keyboard.
 
-We do not routinely have humans read your typed content. Support emails you send us are handled separately.
+We do not routinely have humans read your typed content. Feedback and support messages you send us are handled separately.
+
+If you tap the quoted word in a suggestion, that **word** may be saved locally as a learned word for autocorrect (`learned_words` in the App Group). It is not uploaded as coaching text.
 
 ---
 
@@ -192,9 +220,10 @@ We do not routinely have humans read your typed content. Support emails you send
 
 | Provider | Purpose | Data involved |
 |---------|---------|---------------|
-| **Google Firebase / Firebase AI Logic** | Cloud AI inference | Trimmed coaching text, prompts/instructions, technical request metadata |
+| **Google Firebase / Firebase AI Logic (Gemini)** | Cloud AI inference | Trimmed coaching text, prior-sentence context, prompts/instructions, technical request metadata |
+| **Google Analytics for Firebase** | Anonymous engagement analytics (keyboard extension) | SDK automatic metrics; custom events `service_enabled` and `daily_limit_reached` only—no message content |
+| **Web3Forms** | Deliver optional in-app feedback to the developer | Your message; optional email; platform, version, device; usage counts |
 | **Apple App Store / StoreKit** | Subscriptions, trials, purchase verification | Product IDs, subscription/transaction status |
-| **Google Analytics for Firebase** | Anonymous usage analytics | App/session metrics; no message content |
 
 We may disclose information if required by law or to protect rights and safety. We do **not** sell personal information for cross-context behavioral advertising.
 
@@ -206,9 +235,12 @@ We may disclose information if required by law or to protect rights and safety. 
 |----------|-----------|
 | Local settings (App Group JSON) | Until you change settings, clear app data, or uninstall |
 | Coaching text in memory | Only while processing the current request |
-| Recent-sentence coaching context | In keyboard RAM only (about the last 4–5 completed sentences). Cleared when the keyboard hides, the text field changes, a secure field is focused, or coaching resets. Not written to disk. |
+| Recent-sentence coaching context | In keyboard RAM only (up to 5 completed sentences). Cleared when the keyboard hides, the text field changes, a private field is focused, or coaching resets. Not written to disk. |
+| Words you choose to keep | Saved on device under `learned_words` for autocorrect; not uploaded |
 | Cloud usage counters | Stored locally; reset per daily/hourly logic |
+| Funnel usage counters | Stored locally until uninstall; optional copy sent with feedback |
 | App Store purchase records | Retained by Apple under Apple’s policies; we retain local entitlement flags as needed |
+| Feedback via Web3Forms | Retained as long as needed to respond and operate support |
 | Support emails | As long as needed to respond |
 
 ---
@@ -217,9 +249,9 @@ We may disclose information if required by law or to protect rights and safety. 
 
 We use reasonable measures designed to protect information, including:
 
-- Skipping secure text fields
+- Skipping secure and private text fields
 - Limiting cloud transmission to the current sentence plus a small, short-lived context window
-- Using encrypted transport (HTTPS/TLS) for cloud AI requests
+- Using encrypted transport (HTTPS/TLS) for cloud AI and feedback requests
 - Storing settings in the App’s App Group container
 
 No method of transmission or storage is 100% secure.
@@ -241,7 +273,7 @@ Because most data is stored locally:
 
 - Change settings in the App
 - Delete the App to remove local App data
-- Email [hallanhype@gmail.com](mailto:hallanhype@gmail.com?subject=Spectrum%20Sync%20iOS%20Data%20Deletion%20Request) for help with information you sent by email
+- Email [hallanhype@gmail.com](mailto:hallanhype@gmail.com?subject=Spectrum%20Sync%20iOS%20Data%20Deletion%20Request) for help with information you sent by email or feedback
 
 ### Children
 
